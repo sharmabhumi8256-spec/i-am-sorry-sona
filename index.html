@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person 🥺</title>
+    <style>
+        :root {
+            --pink: #ffafcc;
+            --dark-pink: #ff8fab;
+            --bg: #fff0f3;
+        }
+
+        body {
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 175, 204, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            border: 4px dashed var(--pink);
+        }
+
+        .gif-container img {
+            width: 180px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: var(--dark-pink);
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+
+        p {
+            color: #777;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .btn-group {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            height: 50px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn {
+            background-color: var(--dark-pink);
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #f0f0f0;
+            color: #888;
+            position: absolute;
+        }
+
+        /* Animation for the "No" button */
+        .bounce {
+            animation: bounce 0.5s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-bg" id="hearts"></div>
+
+    <div class="card" id="mainCard">
+        <div class="gif-container">
+            <!-- This is a cute "Peach and Goma" apology gif -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndnZ0eXNnd3J4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/MDJ9IbxxvDUQM/giphy.gif" alt="Cute Cat Apology">
+        </div>
+        <h1>I'm so sorryyy jaann! 🥺</h1>
+        <p>I know merii galtii thii kal butt sona me to aapki hi hu naa pleasee maann jaoo patidevv 🥺.Oyyy meree bachoo k papa pleasee maan jaoo naa ❤️</p>
+        <p><b>Maaf kardiyaaa????</b></p>
+        
+        <div class="btn-group">
+            <button class="btn" id="yesBtn" onclick="celebrate()">Yes! ❤️</button>
+            <button class="btn" id="noBtn" onmouseover="escape()">No 🏃‍♂️</button>
+        </div>
+    </div>
+
+    <script>
+        // Make the "No" button run away
+        function escape() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // What happens when he says Yes
+        function celebrate() {
+            const card = document.getElementById('mainCard');
+            card.innerHTML = `
+                <img src="hug.gif" width="180">
+                <h1 style="color: #ff4d6d;">Yay! I knew it! 🥰</h1>
+                <p>Me promise krti hu me sudhar jaungii or aapko kabhi bhi apne se dur ni jaane dungii hameshaa aapke sath rahungi ❤️! I love you so much!!! ❤️</p>
+                <p><i>Sending you a million virtual hugs & kisses...</i></p>
+            `;
+            
+            // Background becomes a heart storm
+            setInterval(createHeart, 100);
+        }
+
+        // Falling hearts effect
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-20px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animation = 'fall 3s linear forwards';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 3000);
+        }
+
+        // Simple CSS injection for the heart falling animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fall {
+                to { transform: translateY(110vh); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
